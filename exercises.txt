@@ -1,0 +1,135 @@
+ArrayList
+Basic CRUD Operations: Create, Read, Update, and Delete elements.
+Performance Measurement: Measure time for add, remove, and get operations.
+Dynamic Resizing: Add a large number of elements and observe resizing.
+Convert to Array and Vice Versa: Convert between ArrayList and array.
+Sorting Elements: Use Collections.sort().
+Reverse Elements: Reverse the order of elements.
+Shuffle Elements: Randomly shuffle elements.
+Finding Duplicates: Write a method to find duplicates.
+Custom Objects: Create and sort custom objects.
+Batch Operations: Use addAll(), removeAll(), and retainAll().
+Binary Search: Use Collections.binarySearch() on a sorted list.
+Sublist: Extract a portion of the list using subList().
+Immutable List: Create an immutable list using Collections.unmodifiableList().
+Splitting: Split ArrayList into smaller lists.
+Iterator and ListIterator: Use Iterator and ListIterator for traversal.
+
+LinkedList
+Basic CRUD Operations: Create, Read, Update, and Delete elements.
+Performance Measurement: Compare with ArrayList.
+Implement Queue: Use LinkedList to implement a FIFO queue.
+Implement Stack: Use LinkedList to implement a LIFO stack.
+ListIterator: Traverse forwards and backwards.
+Add/Remove at Specific Positions: Perform positional operations.
+Clone LinkedList: Create shallow and deep copies.
+Convert to Other Collections: Convert to ArrayList, HashSet, etc.
+Implement Deque: Use LinkedList as a double-ended queue.
+Custom Object Handling: Store and sort custom objects.
+Reverse LinkedList: Reverse the order of elements.
+Detect Cycle: Write a method to detect cycles.
+Merge Two Lists: Merge two LinkedList instances.
+Split LinkedList: Split into smaller lists.
+Queue Operations: Use offer(), poll(), peek() methods.
+
+HashSet
+Basic CRUD Operations: Create, Read, Update, and Delete elements.
+Performance Measurement: Measure add, remove, and contains operations.
+Find Duplicates: Use HashSet to find duplicates.
+Set Operations: Implement union, intersection, and difference.
+Iteration Order: Demonstrate unordered nature.
+Convert to List: Convert to ArrayList.
+Custom Objects: Store custom objects, implement equals() and hashCode().
+Set Equality: Check if two sets are equal.  !setA.equals(setB)
+Clone HashSet: Create shallow and deep copies. ex8()
+Bulk Operations: Use addAll(), retainAll(), removeAll().
+Stream Operations: Use Java Streams with HashSet.
+Remove All Elements: Use clear() method.
+SubSet: Create a subset from a larger set.
+Subset Check: Check if a set is a subset of another.
+LinkedHashSet vs HashSet: Compare iteration orders.
+
+LinkedHashSet -- aici am ramas
+Basic CRUD Operations: Create, Read, Update, and Delete elements.
+Performance Measurement: Measure operations.
+Iteration Order: Maintain insertion order.
+Remove Duplicates: Use to remove duplicates while maintaining order.
+LRU Cache: Implement an LRU cache.
+Convert to List: Convert to ArrayList.
+Custom Objects: Store custom objects with equals() and hashCode().
+Set Operations: Perform union, intersection, difference.
+Clone LinkedHashSet: Create copies.
+Bulk Operations: Use addAll(), retainAll(), removeAll().
+Stream Operations: Use Streams.
+Remove All Elements: Use clear().
+Ordered Subset: Extract ordered subsets.
+Order Maintenance: Compare order with other sets.
+Access Order: Maintain and test access order.
+
+TreeSet
+Basic CRUD Operations: Create, Read, Update, and Delete elements.
+Performance Measurement: Measure operations.
+Sorted Order: Maintain natural ordering.
+Custom Sorting: Use custom comparators.
+Range Operations: Use subSet(), headSet(), tailSet().
+NavigableSet: Use lower(), higher(), floor(), ceiling().
+Set Operations: Perform union, intersection, difference.
+Clone TreeSet: Create copies.
+Custom Objects: Store custom objects.
+Bulk Operations: Use addAll(), retainAll(), removeAll().
+Stream Operations: Use Streams.
+Remove All Elements: Use clear().
+Bounded Set: Create bounded sets.
+Sorted Subset: Extract sorted subsets.
+Compare Sets: Compare with other sets.
+
+HashMap
+Basic CRUD Operations: Create, Read, Update, and Delete key-value pairs.
+Performance Measurement: Measure operations.
+Iterate Entries: Use entrySet(), keySet(), values().
+Frequency Counter: Implement word frequency counter.
+Custom Objects as Keys: Use custom objects as keys.
+Convert to Other Collections: Convert keys/values to ArrayList, HashSet.
+Sorting by Keys/Values: Sort by keys and values.
+Clone HashMap: Create copies.
+Bulk Operations: Use putAll().
+Thread Safety: Use Collections.synchronizedMap().
+Stream Operations: Use Streams.
+Remove All Elements: Use clear().
+Access Order: Implement access order.
+Bounded Map: Implement bounded maps.
+Compare Maps: Compare with other maps.
+
+LinkedHashMap
+Basic CRUD Operations: Create, Read, Update, and Delete key-value pairs.
+Performance Measurement: Measure operations.
+Access Order: Implement an LRU cache.
+Iteration Order: Maintain insertion order.
+Custom Objects as Keys: Use custom objects as keys.
+Convert to Other Collections: Convert keys/values to ArrayList, HashSet.
+Sorting by Keys/Values: Sort by keys and values.
+Clone LinkedHashMap: Create copies.
+Bulk Operations: Use putAll().
+Thread Safety: Use Collections.synchronizedMap().
+Stream Operations: Use Streams.
+Remove All Elements: Use clear().
+Ordered Subset: Create ordered subsets.
+Order Maintenance: Compare with other maps.
+Access Order Testing: Test and verify access order.
+
+TreeMap
+Basic CRUD Operations: Create, Read, Update, and Delete key-value pairs.
+Performance Measurement: Measure operations.
+Sorted Order: Maintain natural ordering of keys.
+Custom Sorting: Use custom comparators for sorting keys.
+Range Operations: Use subMap(), headMap(), tailMap().
+NavigableMap: Use lowerKey(), higherKey(), floorKey(), ceilingKey().
+Custom Objects as Keys: Use custom objects.
+Clone TreeMap: Create copies.
+Bulk Operations: Use putAll().
+Thread Safety: Use Collections.synchronizedSortedMap().
+Stream Operations: Use Streams.
+Remove All Elements: Use clear().
+Bounded Map: Create bounded maps.
+Sorted Submap: Extract sorted submaps.
+Compare Maps: Compare with other maps.
