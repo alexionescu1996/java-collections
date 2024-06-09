@@ -115,10 +115,7 @@ public class Main {
 
         HashMap<UserProfile, Integer> duplicatesMap = new HashMap<>();
         for (UserProfile i : list) {
-            duplicatesMap.put(
-                    i,
-                    duplicatesMap.getOrDefault(i, 0) + 1
-            );
+            duplicatesMap.put(i, duplicatesMap.getOrDefault(i, 0) + 1);
         }
 
         System.out.println(duplicatesMap);

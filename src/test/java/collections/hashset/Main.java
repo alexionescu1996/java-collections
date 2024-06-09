@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Main {
 
@@ -151,7 +152,7 @@ public class Main {
         UserProfile profile = new UserProfile("###", -1);
         HASH_SET.add(profile);
 
-        HashSet<UserProfile> shallowCopySet = (HashSet<UserProfile>) HASH_SET.clone();
+        HashSet<UserProfile> shallowCopySet = new HashSet<>(HASH_SET);
         profile.setName("Alice");
 
 
@@ -182,22 +183,30 @@ public class Main {
                 .collect(Collectors.toSet());
 
         System.out.println(HASH_SET.containsAll(subSet));
+
+        HashSet<UserProfile> subSetV2 = new HashSet<>(new ArrayList<>(HASH_SET).subList(0, 4));
+        System.out.println(subSetV2);
+        assertTrue(HASH_SET.containsAll(subSetV2));
     }
 
     @Test
     public void ex11() {
-        HashSet<Integer> hashSet = new HashSet<>();
-        hashSet.add(1);
-        hashSet.add(2);
-        hashSet.add(3);
+        HashSet<UserProfile> hashSet = new HashSet<>();
+        populate(hashSet, 5);
 
-        LinkedHashSet<Integer> linkedHashSet = new LinkedHashSet<>();
-        linkedHashSet.add(1);
-        linkedHashSet.add(2);
-        linkedHashSet.add(3);
+        LinkedHashSet<UserProfile> linkedHashSet = new LinkedHashSet<>();
+        populate(linkedHashSet, 5);
 
-        System.out.println(hashSet);
-        System.out.println(linkedHashSet);
+        print(hashSet);
+        System.out.println();
+        print(linkedHashSet);
+    }
+
+    private static void print(Iterable<UserProfile> iterable) {
+        Iterator<UserProfile> iterator = iterable.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 
     public static void populate(HashSet<UserProfile> list, int n) {
