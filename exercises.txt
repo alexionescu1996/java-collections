@@ -1,4 +1,4 @@
-ArrayList
+ArrayList - ordered
 Basic CRUD Operations: Create, Read, Update, and Delete elements.
 Performance Measurement: Measure time for add, remove, and get operations.
 Dynamic Resizing: Add a large number of elements and observe resizing.
@@ -15,7 +15,7 @@ Immutable List: Create an immutable list using Collections.unmodifiableList().
 Splitting: Split ArrayList into smaller lists.
 Iterator and ListIterator: Use Iterator and ListIterator for traversal.
 
-LinkedList
+LinkedList - it depends
 Basic CRUD Operations: Create, Read, Update, and Delete elements.
 Performance Measurement: Compare with ArrayList.
 Implement Queue: Use LinkedList to implement a FIFO queue.
@@ -32,7 +32,7 @@ Merge Two Lists: Merge two LinkedList instances.
 Split LinkedList: Split into smaller lists.
 Queue Operations: Use offer(), poll(), peek() methods.
 
-HashSet
+HashSet - unordered
 Basic CRUD Operations: Create, Read, Update, and Delete elements.
 Performance Measurement: Measure add, remove, and contains operations.
 Find Duplicates: Use HashSet to find duplicates.
@@ -49,11 +49,11 @@ SubSet: Create a subset from a larger set.
 Subset Check: Check if a set is a subset of another.
 LinkedHashSet vs HashSet: Compare iteration orders.
 
-LinkedHashSet -- aici am ramas
+LinkedHashSet - ordered
 Basic CRUD Operations: Create, Read, Update, and Delete elements.
 Performance Measurement: Measure operations.
 Iteration Order: Maintain insertion order.
-Remove Duplicates: Use to remove duplicates while maintaining order.
+Remove Duplicates: Use to remove duplicates while maintaining order. -- aici am ramas
 LRU Cache: Implement an LRU cache.
 Convert to List: Convert to ArrayList.
 Custom Objects: Store custom objects with equals() and hashCode().

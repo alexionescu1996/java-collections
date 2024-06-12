@@ -58,6 +58,14 @@ public class Main {
 
     @Test
     public void ex2() {
+        performanceHS();
+
+
+//        2994
+//        hashset > linkedlist > arraylist
+    }
+
+    public static void performanceHS() {
         long startTime = System.currentTimeMillis();
 
         HashSet<UserProfile> hashSet = new HashSet<>();
@@ -65,10 +73,7 @@ public class Main {
 
         long endTime = System.currentTimeMillis();
         long hashSetTime = endTime - startTime;
-        System.out.println(hashSetTime);
-
-//        2994
-//        hashset > linkedlist > arraylist
+        System.out.println("HashSet: " + hashSetTime + " ms");
     }
 
     @Test

@@ -27,30 +27,22 @@ public class Main {
 
     @Test
     public void ex2() {
-        System.out.println("start array list");
+        performanceLL();
+//        LinkedListTime >> ArrayList
+    }
+
+    public static void performanceLL() {
 
         long startTime = System.currentTimeMillis();
-
-        ArrayList<UserProfile> arrayList = new ArrayList<>();
-        populateList(arrayList, 10_000_000);
-
-        long endTime = System.currentTimeMillis();
-        long arrayListTime = endTime - startTime;
-
-        System.out.println("=========");
-
-        System.out.println("start linked list");
-
-        startTime = System.currentTimeMillis();
 
         LinkedList<UserProfile> linkedList = new LinkedList<>();
         populateList(linkedList, 10_000_000);
 
-        endTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
         long linkedListTime = endTime - startTime;
 
-        System.out.println(arrayListTime + " " + linkedListTime);
-//        LinkedListTime >> ArrayList
+        System.out.println("LinkedList: " + linkedListTime + " ms");
+
     }
 
     @Test
@@ -157,7 +149,6 @@ public class Main {
 
 //        Collections.reverse(linkedList);
     }
-
 
 
     public static void populateList(List<UserProfile> list, int n) {

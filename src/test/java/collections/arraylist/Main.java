@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static collections.linkedlist.Main.populateList;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -38,6 +39,21 @@ public class Main {
         list.remove(0);
 
         System.out.println(list);
+    }
+
+    public static void performanceAL() {
+        System.out.println("start array list");
+
+        long startTime = System.currentTimeMillis();
+
+        ArrayList<UserProfile> arrayList = new ArrayList<>();
+        populateList(arrayList, 10_000_000);
+
+        long endTime = System.currentTimeMillis();
+        long arrayListTime = endTime - startTime;
+
+        System.out.println("ArrayList: " + arrayListTime + " ms");
+
     }
 
     @Test
