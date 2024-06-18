@@ -9,9 +9,9 @@ import java.util.Objects;
 public class UserProfile {
 
     private String name;
-    private int id;
+    private Integer id;
 
-    public UserProfile(String name, int id) {
+    public UserProfile(String name, Integer id) {
         this.name = name;
         this.id = id;
     }
@@ -22,16 +22,13 @@ public class UserProfile {
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserProfile)) return false;
+        if (!(o instanceof UserProfile that)) return false;
 
-        UserProfile that = (UserProfile) o;
-        return id == that.id && Objects.equals(name, that.name);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hashCode(name);
-        result = 31 * result + id;
-        return result;
+       return 31 * id.hashCode();
     }
 }

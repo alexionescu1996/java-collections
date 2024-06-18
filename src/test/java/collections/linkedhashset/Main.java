@@ -35,7 +35,7 @@ public class Main {
         performanceLHS();
     }
 
-    private static void performanceLHS() {
+    public static void performanceLHS() {
         LinkedHashSet<UserProfile> linkedHashSet = new LinkedHashSet<>();
         long startTime = System.currentTimeMillis();
 
@@ -55,14 +55,15 @@ public class Main {
 //        ArrayList: 1241 ms
 //        LinkedList: 2699 ms
 //        HashSet: 3371 ms
-//        LinkedHashSet: 3398 ms
+//        LinkedHashSet: 3398 ms with String name comparison
+//        LinkedHashSet: 728  ms with Integer id comparison
 
 //        ArrayList: 1117 ms
 //        LinkedList: 2715 ms
 //        HashSet: 3428 ms
 //        LinkedHashSet: 3665 ms
 
-//          LHS > HS > LL > AL
+//          LHS > HS > LL > AL > LHS
     }
 
     @Test

@@ -42,7 +42,6 @@ public class Main {
     }
 
     public static void performanceAL() {
-        System.out.println("start array list");
 
         long startTime = System.currentTimeMillis();
 

@@ -32,7 +32,7 @@ Merge Two Lists: Merge two LinkedList instances.
 Split LinkedList: Split into smaller lists.
 Queue Operations: Use offer(), poll(), peek() methods.
 
-HashSet - unordered
+HashSet - unordered, no duplicates
 Basic CRUD Operations: Create, Read, Update, and Delete elements.
 Performance Measurement: Measure add, remove, and contains operations.
 Find Duplicates: Use HashSet to find duplicates.
@@ -49,11 +49,11 @@ SubSet: Create a subset from a larger set.
 Subset Check: Check if a set is a subset of another.
 LinkedHashSet vs HashSet: Compare iteration orders.
 
-LinkedHashSet - ordered
+LinkedHashSet - ordered, no duplicates
 Basic CRUD Operations: Create, Read, Update, and Delete elements.
 Performance Measurement: Measure operations.
 Iteration Order: Maintain insertion order.
-Remove Duplicates: Use to remove duplicates while maintaining order. -- aici am ramas
+Remove Duplicates: Use to remove duplicates while maintaining order.
 LRU Cache: Implement an LRU cache.
 Convert to List: Convert to ArrayList.
 Custom Objects: Store custom objects with equals() and hashCode().
@@ -72,7 +72,7 @@ Performance Measurement: Measure operations.
 Sorted Order: Maintain natural ordering.
 Custom Sorting: Use custom comparators.
 Range Operations: Use subSet(), headSet(), tailSet().
-NavigableSet: Use lower(), higher(), floor(), ceiling().
+NavigableSet: Use lower(), higher(), floor(), ceiling().  -- aici am ramas
 Set Operations: Perform union, intersection, difference.
 Clone TreeSet: Create copies.
 Custom Objects: Store custom objects.
