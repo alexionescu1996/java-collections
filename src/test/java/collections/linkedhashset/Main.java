@@ -88,6 +88,7 @@ public class Main {
         for (UserProfile userProfile : arrayList) {
             System.out.println(userProfile);
         }
+
     }
 
     @Test

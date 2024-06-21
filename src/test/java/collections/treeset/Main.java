@@ -3,6 +3,7 @@ package collections.treeset;
 import com.sun.source.tree.Tree;
 import lombok.Data;
 import org.example.model.UserProfile;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,7 @@ import static collections.hashset.Main.performanceHS;
 import static collections.linkedhashset.Main.performanceLHS;
 import static collections.linkedhashset.Main.populateList;
 import static collections.linkedlist.Main.performanceLL;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Main {
 
@@ -97,6 +99,7 @@ public class Main {
     @Test
     public void ex5() {
         TreeSet<Person> bySalaryTS = (TreeSet<Person>) addFromFile(new TreeSet<>(Comparator.comparing(Person::getSalary)));
+
         TreeSet<Person> byNameTs = (TreeSet<Person>) addFromFile(new TreeSet<>(Comparator.comparing(Person::getName)));
 
         TreeSet<Person> under1500salary = bySalaryTS.stream()
@@ -119,7 +122,133 @@ public class Main {
 
     @Test
     public void ex6() {
+        TreeSet<Person> treeSet = new TreeSet<>(Comparator.comparing(Person::getSalary));
+        addFromFile(treeSet);
+        Person first = treeSet.first();
+        Person last = treeSet.last();
 
+        Person beforeFirst = treeSet.lower(first);
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            beforeFirst.getSalary();
+        });
+
+        System.out.println("first: " + first.getSalary());
+        System.out.println("last: " + last.getSalary());
+
+        Person floor = treeSet.floor(new Person("search", 1, 1115.5d));
+        Person ceiling = treeSet.ceiling(new Person("search", 1, 1115.5d));
+
+        System.out.println("floor: " + floor.getSalary());
+        System.out.println("ceiling: " + ceiling.getSalary());
+    }
+
+
+    @Test
+    public void ex7() {
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        for (int i = 0; i < 50; i = i + 10) {
+            treeSet.add(i);
+        }
+        System.out.println(treeSet.size());
+
+        int first = treeSet.first();
+        int last = treeSet.last();
+
+        System.out.println(first + " " + last);
+
+//        floor <=
+        int floorResult = treeSet.floor(23);
+
+//        ceiling >=
+        int ceilResult = treeSet.ceiling(23);
+
+        System.out.println("floor: " + floorResult);
+        System.out.println("ceiling: " + ceilResult);
+//        int floorResult1 = treeSet.floor(5);
+//        int ceilResult1 = treeSet.ceiling(5);
+
+//        System.out.println(floorResult1 + " " + ceilResult1);
+
+    }
+
+
+    @Test
+    public void ex8() {
+        TreeSet<Person> treeSet = new TreeSet<>(Comparator.comparing(Person::getSalary));
+        addFromFile(treeSet);
+
+        Person floor = treeSet.floor(new Person("search", 1, 1115.5d));
+        Person ceiling = treeSet.ceiling(new Person("search", 1, 1115.5d));
+
+        TreeSet<Person> sub = (TreeSet<Person>) treeSet.subSet(floor, treeSet.last());
+        System.out.println(sub.size());
+
+        TreeSet<Person> sub1 = (TreeSet<Person>) treeSet.subSet(treeSet.first(), ceiling);
+        System.out.println(sub1.size());
+
+        Person seconds = treeSet.lower(sub1.last());
+        System.out.println(seconds);
+
+        TreeSet<Person> newS = new TreeSet<>(Comparator.comparing(Person::getName));
+        newS.addAll(treeSet);
+        System.out.println(newS.size() + " " + treeSet.size());
+
+//        treeSet.headSet();
+    }
+
+    @Test
+    public void ex9() {
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        for (int i = 0; i < 10; i++) {
+            treeSet.add(i);
+        }
+
+        int first = treeSet.first();
+        int last = treeSet.last();
+        System.out.println(first + " " + last);
+
+        int second = treeSet.higher(first);
+        int third = treeSet.higher(second);
+        System.out.println(second + " " + third);
+
+        System.out.println(treeSet.lower(third));
+
+        TreeSet<Integer> headSet = (TreeSet<Integer>) treeSet.headSet(third);
+        System.out.println(headSet.size());
+
+        TreeSet<Integer> tailSet = (TreeSet<Integer>) treeSet.tailSet(third);
+        System.out.println(tailSet.size());
+
+    }
+
+    @Test
+    public void ex10() {
+        TreeSet<Integer> treeSet1 = new TreeSet<>();
+        for (int i = 0; i < 10; i++) {
+            treeSet1.add(i);
+        }
+
+        TreeSet<Integer> treeSet2 = new TreeSet<>();
+        for (int i = 0; i < 10; i++) {
+            treeSet2.add(i);
+        }
+
+        System.out.println(treeSet2.containsAll(treeSet1));
+        System.out.println(treeSet1.equals(treeSet2));
+    }
+
+    @Test
+    public void ex11() {
+        List<Person> arrayList = new ArrayList<>();
+        addFromFile(arrayList);
+        System.out.println(arrayList.size());
+
+        TreeSet<Person> treeSet = new TreeSet<>(arrayList);
+        System.out.println(treeSet.size());
+
+        TreeSet<Person> tsCustomComparator = new TreeSet<>(new PersonAgeComparator());
+        tsCustomComparator.addAll(arrayList);
+        System.out.println(tsCustomComparator.size());
     }
 
     public static void performanceTS() {
@@ -159,8 +288,22 @@ public class Main {
 
 }
 
+class PersonNameComparator implements Comparator<Person> {
+    @Override
+    public int compare(Person p1, Person p2) {
+        return p1.getName().compareTo(p2.getName());
+    }
+}
+
+class PersonAgeComparator implements Comparator<Person> {
+    @Override
+    public int compare(Person o1, Person o2) {
+        return o1.getAge().compareTo(o2.getAge());
+    }
+}
+
 @Data
-class Person {
+class Person implements Comparable<Person> {
     private String name;
     private Integer age;
     private Double salary;
@@ -169,6 +312,11 @@ class Person {
         this.name = name;
         this.age = age;
         this.salary = salary;
+    }
+
+    @Override
+    public int compareTo(Person other) {
+        return this.name.compareTo(other.name);
     }
 
     @Override
