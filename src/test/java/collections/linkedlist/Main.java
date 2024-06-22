@@ -12,7 +12,7 @@ public class Main {
 
     @BeforeAll
     public static void init() {
-        populateList(linkedList, 15);
+        populateSet(linkedList, 15);
     }
 
     @Test
@@ -36,19 +36,19 @@ public class Main {
         long startTime = System.currentTimeMillis();
 
         LinkedList<UserProfile> linkedList = new LinkedList<>();
-        populateList(linkedList, 10_000_000);
+        populateSet(linkedList, 10_000_000);
 
         long endTime = System.currentTimeMillis();
         long linkedListTime = endTime - startTime;
 
-        System.out.println("LinkedList: " + linkedListTime + " ms");
+        System.out.println("LinkedList: " + linkedListTime + " ms " + linkedList.size());
 
     }
 
     @Test
     public void QUEUE_FIFO() {
         LinkedList<UserProfile> QUEUE = new LinkedList<>();
-        populateList(QUEUE, 10);
+        populateSet(QUEUE, 10);
 
 
         QUEUE.addLast(new UserProfile("test", -1)); // Enqueue
@@ -62,7 +62,7 @@ public class Main {
     @Test
     public void STACK_LIFO() {
         LinkedList<UserProfile> STACK = new LinkedList<>();
-        populateList(STACK, 3);
+        populateSet(STACK, 3);
         System.out.println(STACK);
 
 
@@ -87,7 +87,7 @@ public class Main {
     @Test
     public void ex5() {
         LinkedList<UserProfile> STACK = new LinkedList<>();
-        populateList(STACK, 5);
+        populateSet(STACK, 5);
 
         STACK.pop(); // Another pop
 
@@ -151,7 +151,7 @@ public class Main {
     }
 
 
-    public static void populateList(List<UserProfile> list, int n) {
+    public static void populateSet(List<UserProfile> list, int n) {
         for (int i = 0; i < n; i++) {
             Random random = new Random();
             list.add(new UserProfile("name_" + i, random.nextInt(150)));

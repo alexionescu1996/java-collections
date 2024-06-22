@@ -39,10 +39,10 @@ public class Main {
         LinkedHashSet<UserProfile> linkedHashSet = new LinkedHashSet<>();
         long startTime = System.currentTimeMillis();
 
-        populateList(linkedHashSet, 10_000_000);
+        populateSet(linkedHashSet, 10_000_000);
         long endTime = System.currentTimeMillis();
 
-        System.out.println("LinkedHashSet: " + (endTime - startTime) + " ms");
+        System.out.println("LinkedHashSet: " + (endTime - startTime) + " ms " + linkedHashSet.size());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class Main {
     public void ex3() {
         LinkedHashSet<UserProfile> linkedHashSet = new LinkedHashSet<>();
 
-        populateList(linkedHashSet, 10);
+        populateSet(linkedHashSet, 10);
 
         for (UserProfile userProfile : linkedHashSet) {
             System.out.println(userProfile);
@@ -248,7 +248,7 @@ public class Main {
         return result;
     }
 
-    public static void populateList(Set<UserProfile> set, int n) {
+    public static void populateSet(Set<UserProfile> set, int n) {
         for (int i = 0; i < n; i++) {
             Random random = new Random();
             set.add(new UserProfile("name_" + i, random.nextInt(150)));

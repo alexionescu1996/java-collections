@@ -73,7 +73,7 @@ public class Main {
 
         long endTime = System.currentTimeMillis();
         long hashSetTime = endTime - startTime;
-        System.out.println("HashSet: " + hashSetTime + " ms");
+        System.out.println("HashSet: " + hashSetTime + " ms " + hashSet.size());
     }
 
     @Test

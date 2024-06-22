@@ -6,9 +6,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static collections.linkedlist.Main.populateList;
+import static collections.linkedlist.Main.populateSet;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -41,17 +40,18 @@ public class Main {
         System.out.println(list);
     }
 
+
     public static void performanceAL() {
 
         long startTime = System.currentTimeMillis();
 
         ArrayList<UserProfile> arrayList = new ArrayList<>();
-        populateList(arrayList, 10_000_000);
+        populateSet(arrayList, 10_000_000);
 
         long endTime = System.currentTimeMillis();
         long arrayListTime = endTime - startTime;
 
-        System.out.println("ArrayList: " + arrayListTime + " ms");
+        System.out.println("ArrayList: " + arrayListTime + " ms " + arrayList.size());
 
     }
 

@@ -24,11 +24,11 @@ public class UserProfile {
         if (this == o) return true;
         if (!(o instanceof UserProfile that)) return false;
 
-        return id.equals(that.id);
+        return Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-       return 31 * id.hashCode();
+        return Objects.hashCode(name);
     }
 }

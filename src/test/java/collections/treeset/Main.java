@@ -1,6 +1,5 @@
 package collections.treeset;
 
-import com.sun.source.tree.Tree;
 import lombok.Data;
 import org.example.model.UserProfile;
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 import static collections.arraylist.Main.performanceAL;
 import static collections.hashset.Main.performanceHS;
 import static collections.linkedhashset.Main.performanceLHS;
-import static collections.linkedhashset.Main.populateList;
+import static collections.linkedhashset.Main.populateSet;
 import static collections.linkedlist.Main.performanceLL;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -213,12 +212,14 @@ public class Main {
 
         System.out.println(treeSet.lower(third));
 
-        TreeSet<Integer> headSet = (TreeSet<Integer>) treeSet.headSet(third);
-        System.out.println(headSet.size());
+        TreeSet<Integer> headSet = (TreeSet<Integer>) treeSet.headSet(5);
+        System.out.println(headSet);
 
-        TreeSet<Integer> tailSet = (TreeSet<Integer>) treeSet.tailSet(third);
-        System.out.println(tailSet.size());
+        TreeSet<Integer> tailSet = (TreeSet<Integer>) treeSet.tailSet(5);
+        System.out.println(tailSet);
 
+        TreeSet<Integer> subSet = (TreeSet<Integer>) treeSet.subSet(3, 6);
+        System.out.println(subSet);
     }
 
     @Test
@@ -252,13 +253,13 @@ public class Main {
     }
 
     public static void performanceTS() {
-        TreeSet<UserProfile> treeSet = new TreeSet<>(Comparator.comparing(UserProfile::getId));
+        TreeSet<UserProfile> treeSet = new TreeSet<>(Comparator.comparing(UserProfile::getName));
         long startTime = System.currentTimeMillis();
 
-        populateList(treeSet, 10_000_000);
+        populateSet(treeSet, 10_000_000);
         long endTime = System.currentTimeMillis();
 
-        System.out.println("TreeSet: " + (endTime - startTime) + " ms");
+        System.out.println("TreeSet: " + (endTime - startTime) + " ms " + treeSet.size());
     }
 
     private static Collection<Person> addFromFile(Collection<Person> collection) {
