@@ -1,11 +1,16 @@
 package collections.hashmap;
 
+import org.example.model.Employee;
+import org.example.model.Person;
 import org.example.model.UserProfile;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOError;
+import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 import static collections.arraylist.Main.performanceAL;
@@ -26,7 +31,6 @@ public class Main {
         String x = hashMap.getOrDefault(3, "#");
         hashMap.putIfAbsent(3, hashMap.getOrDefault(3, "#"));
         System.out.println(hashMap);
-
     }
 
     @Test
@@ -98,7 +102,167 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(hashMap);
+    }
 
+    @Test
+    public void ex4() {
+        HashMap<Employee, Integer> hashMap = new HashMap<>();
+        populateMapFromFile(hashMap, 500);
+    }
+
+    private static void populateMapFromFile(HashMap<Employee, Integer> hashMap, int limit) {
+        ArrayList<Employee> duplicates = new ArrayList<>();
+        int key = 0;
+        Random random = new Random();
+
+        String filePath = "src/main/resources/MOCK_DATA.csv";
+        long startTime = System.currentTimeMillis();
+        try (Scanner scanner = new Scanner(new File(filePath))) {
+            scanner.nextLine();
+            while (scanner.hasNext()) {
+                String current = scanner.nextLine();
+                String[] words = current.split(",");
+
+                String name = words[0];
+                Double salary = Double.valueOf(words[1]);
+                Integer age = Integer.valueOf(words[2]);
+                Integer id = random.nextInt(1000);
+
+                Employee employee = new Employee(id, name, age, salary);
+                if (hashMap.containsKey(employee)) {
+                    Integer duplicateID = hashMap.get(employee);
+
+                    System.out.println("am gasit deja" + employee.getName() + " " + employee.getSalary() + " " + employee.getAge());
+                    duplicates.add(employee);
+                }
+                if (hashMap.size() < limit) {
+                    hashMap.put(employee, key++);
+                } else {
+                    break;
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("size : " + hashMap.size());
+        System.out.println("finished in :" + (endTime - startTime));
+    }
+
+    @Test
+    public void ex5() {
+        HashMap<Employee, Integer> hashMap = new HashMap<>();
+        populateMapFromFile(hashMap, 5);
+
+        HashMap<Integer, Employee> reverseHM = new HashMap<>();
+        hashMap.forEach((key, value) -> {
+            reverseHM.put(value, key);
+        });
+        System.out.println(reverseHM);
+        System.out.println(hashMap);
+        HashMap<Person, Integer> hashMap1 = new HashMap<>(hashMap);
+        System.out.println(hashMap1.size());
+        ArrayList<Person> arrayList = new ArrayList<>(hashMap.keySet());
+        Person p = arrayList.get(0);
+        Integer pId = hashMap1.get(p);
+        System.out.println(pId);
+
+        Employee employee = new Employee(pId, p.getName(), p.getAge(), p.getSalary());
+        Integer employeeId = hashMap.get(employee);
+        System.out.println(employeeId);
+        hashMap.put(employee, -1);
+        System.out.println(hashMap);
+
+        HashSet<Person> people = new HashSet<>(hashMap.keySet());
+        System.out.println(people);
+    }
+
+    @Test
+    public void sorByKey() {
+        HashMap<Employee, Integer> hashMap = new HashMap<>();
+        populateMapFromFile(hashMap, 5);
+
+        TreeSet<Employee> treeSet = new TreeSet<>(Comparator.comparing(Employee::getAge));
+
+        ArrayList<Employee> arrayList = new ArrayList<>(hashMap.keySet());
+        arrayList.sort(Comparator.comparing(Employee::getSalary));
+
+        treeSet.addAll(hashMap.keySet());
+        System.out.println(hashMap);
+
+        System.out.println(treeSet);
+        System.out.println(arrayList);
+
+        HashMap<Employee, Integer> sortedHM = new HashMap<>();
+        for (Employee e : treeSet) {
+            sortedHM.put(e, hashMap.get(e));
+        }
+        System.out.println(sortedHM);
+    }
+
+    @Test
+    public void ex6() {
+        HashMap<Employee, Integer> hashMap = new HashMap<>();
+        populateMapFromFile(hashMap, 5);
+
+        HashMap<Integer, Employee> reverseHM = new HashMap<>();
+        hashMap.forEach((key, value) -> {
+            reverseHM.put(value, key);
+        });
+
+        System.out.println(hashMap);
+
+        HashMap<Integer, Employee> cloneReverseHM = (HashMap<Integer, Employee>) reverseHM.clone();
+        Person p = reverseHM.get(0);
+        p.setName("####");
+
+        System.out.println(cloneReverseHM);
+        cloneReverseHM.putAll(reverseHM);
+
+        System.out.println(cloneReverseHM.size());
+    }
+
+    @Test
+    public void ex7() throws InterruptedException {
+        HashMap<Employee, Integer> hashMap = new HashMap<>();
+        populateMapFromFile(hashMap, 5);
+
+        HashMap<Integer, Employee> reverseHM = new HashMap<>();
+        hashMap.forEach((key, value) -> reverseHM.put(value, key));
+
+        Map<Integer, Employee> map = Collections.synchronizedMap(reverseHM);
+//        Map<Integer, Employee> map = new HashMap<>(reverseHM);
+
+        Employee first = map.get(0);
+        first.setName("TESTING");
+
+
+        ExecutorService service = null;
+        try {
+            service = Executors.newSingleThreadExecutor();
+            Runnable r = () -> {
+                Employee f = map.get(0);
+                f.setName("###");
+                System.out.println(map);
+            };
+            service.submit(r);
+            System.out.println("finished");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (service != null) {
+                service.awaitTermination(5, TimeUnit.SECONDS);
+                if (service.isShutdown()) {
+                    System.out.println("done");
+                }
+            }
+        }
+
+        System.out.println(map);
     }
 
     public void performanceHM() {

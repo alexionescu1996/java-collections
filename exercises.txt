@@ -88,12 +88,12 @@ Basic CRUD Operations: Create, Read, Update, and Delete key-value pairs.
 Performance Measurement: Measure operations.
 Iterate Entries: Use entrySet(), keySet(), values().
 Frequency Counter: Implement word frequency counter.
-Custom Objects as Keys: Use custom objects as keys. -- aici am ramas
+Custom Objects as Keys: Use custom objects as keys.
 Convert to Other Collections: Convert keys/values to ArrayList, HashSet.
 Sorting by Keys/Values: Sort by keys and values.
 Clone HashMap: Create copies.
 Bulk Operations: Use putAll().
-Thread Safety: Use Collections.synchronizedMap().
+Thread Safety: Use Collections.synchronizedMap(). -- aici am ramas
 Stream Operations: Use Streams.
 Remove All Elements: Use clear().
 Access Order: Implement access order.
